@@ -22,7 +22,8 @@ const upcoming = sprint("Sprint 13", "future");
 const heading = (name, count, open) => `
   <tr><td colspan="4">
     <button aria-label="${open ? "Collapse" : "Expand"} group"></button>
-    <span class="group-name">${name}</span><span class="count">${count}</span>
+    <span class="group-name"><span>${name}</span></span>
+    <span class="count"><span>${count}</span></span>
     <button aria-label="Create work item">+</button>
   </td></tr>`;
 const row = (number, points) => `
@@ -107,7 +108,10 @@ test("adds estimates to expanded and collapsed sprint headers and responds to ed
     "Estimated 0 · Unestimated 1 · SP 0",
     "Estimated 1 · Unestimated 0 · SP 1"
   ]);
-  assert.equal(window.document.querySelector(".count").nextElementSibling.dataset.text, badges()[0]);
+  for (const [index, count] of [...window.document.querySelectorAll(".count")].entries()) {
+    assert.match(count.textContent, /^\d+$/);
+    assert.equal(count.nextElementSibling?.dataset.text, badges()[index]);
+  }
   window.document.querySelector('button[aria-label="Edit Story Points"]').textContent = "0.25";
   await until(() => badges()[0] === "Estimated 3 · Unestimated 0 · SP 1.75");
 

@@ -38,11 +38,17 @@
     const total = Number(count.value.replace(/[\s,]/g, ""));
     if (!Number.isSafeInteger(total)) return null;
 
+    // The number can sit inside a nested Jira badge. Find its branch beside the sprint name.
+    let countAnchor = count.node;
+    while (!countAnchor.parentElement.contains(words[0].node)) {
+      countAnchor = countAnchor.parentElement;
+    }
+
     return {
       cell,
       key: groupKey(words.map(({ value }) => value).join(" ")),
       total,
-      countNode: count.node,
+      countAnchor,
       expanded: label(toggle) === "Collapse group",
       visible: new Map()
     };
@@ -104,13 +110,7 @@
     if (!badge) {
       badge = document.createElement("span");
       badge.setAttribute(marker, "");
-      // Insert after Jira's count without changing the collapse and create controls.
-      const count = group.countNode.parentElement;
-      if (count !== group.cell && normalize(count.textContent) === normalize(group.countNode.textContent)) {
-        count.after(badge);
-      } else {
-        group.countNode.after(badge);
-      }
+      group.countAnchor.after(badge);
     }
 
     const content = stats

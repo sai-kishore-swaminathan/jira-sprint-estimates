@@ -1,0 +1,14 @@
+{
+  "name": "jira-sprint-estimates",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "jsdom": "31.0.1"
+  }
+}

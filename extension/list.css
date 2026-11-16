@@ -1,0 +1,24 @@
+[data-jira-sprint-estimates] {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 0.5em;
+  margin-inline-start: 0.65em;
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--ds-text-subtle, inherit);
+}
+
+[data-jira-sprint-estimates] strong {
+  font-weight: 650;
+  color: var(--ds-text, inherit);
+}
+
+[data-jira-sprint-estimates] .jse-points {
+  padding: 0.12em 0.45em;
+  border-radius: 0.25em;
+  background: var(--ds-background-neutral, rgba(127, 127, 127, 0.14));
+}

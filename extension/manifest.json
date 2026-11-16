@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Jira Sprint Estimates",
+  "version": "1.0.0",
+  "description": "Shows estimated tickets, unestimated tickets, and total Story Points on the BandLab iOS Jira sprint list.",
+  "content_scripts": [
+    {
+      "matches": ["https://bandlab.atlassian.net/jira/software/*"],
+      "js": ["estimates.js", "list.js"],
+      "css": ["list.css"]
+    }
+  ]
+}
